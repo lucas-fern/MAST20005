@@ -1,4 +1,4 @@
-\documentclass[titlepage,twocolumn]{article}
+\documentclass{article}
 
 \usepackage[a4paper,top=2cm,bottom=2cm,left=1cm,right=1cm]{geometry}
 \usepackage[fleqn]{amsmath}
@@ -9,6 +9,9 @@
 \usepackage{algorithm2e}
 \usepackage{nopageno}
 \usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage[table,xcdraw]{xcolor}
 
 \title{MAST20005 Statistics - Summary Notes}
 \date{\today}
@@ -19,7 +22,34 @@
 \pagestyle{fancy}
 
 \begin{document}
+\subsection*{Distributions}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    \multicolumn{1}{c}{\textbf{Distribution}}       & \multicolumn{1}{c}{\textbf{Probability Density Function}}                                                                          & \multicolumn{1}{c}{\textbf{$\mathbb{E}(X)$}}                & \multicolumn{1}{c}{\textbf{$\mbox{Var}(X)$}}                                                                       \\ \midrule
+    $X\stackrel{d}{=}\mbox{Bi}(n,p)$                & $p_X(x)={\binom{n}{x}}p^x(1-p)^{n-x}$                                                                                              & $np$                                                        & $np(1-p)$                                                                                                          \\ \midrule
+    $N\stackrel{d}{=}\mbox{G}(p)$                   & $p_N(n)=(1-p)^{n}p$                                                                                                                & $\frac{1-p}{p}$                                             & $\frac{1-p}{p^2}$                                                                                                  \\ \midrule
+    $Z\stackrel{d}{=}\mbox{Nb}(r,p)$                & $p_Z(z)={\binom{-r}{z}}p^r(p-1)^z$                                                                                                 &                                                             &                                                                                                                    \\ \midrule
+    $X\stackrel{d}{=}\mbox{Hg}(n,D,N)$              & $p_X(x)=\frac{{\binom{D}{x}}{\binom{N-D}{n-x}}}{{\binom{N}{n}}}$                                                                   & $\frac{nD}{N}$                                              & $\frac{nD(N-D)}{N^2}\cdot(1-\frac{n-1}{N-1})$                                                                      \\ \midrule
+    $X\stackrel{d}{=}\mbox{Pn}(\alpha t)$           & $p_X(x)=\frac{e^{-\alpha}(\alpha)^x}{x!}$                                                                                          & $\alpha$                                                    & $\alpha$                                                                                                           \\ \midrule
+    $X\stackrel{d}{=}\mbox{U}(m,n)$                 & $p_X(x)=\frac{1}{n-m+1}$                                                                                                           & $\frac{m+n}{2}$                                             & $\frac{1}{12}((n-m+1)^2-1)$                                                                                        \\ \midrule
+    $X\stackrel{d}{=}\mbox{R}(a,b)$                 & $f_X(x)=\frac{1}{b-a}$                                                                                                             & $\frac{a+b}{2}$                                             & $\frac{1}{12}(b-a)^2$                                                                                              \\ \midrule
+    $T\stackrel{d}{=}\mbox{exp}(\alpha)$            & $f_T(t)=\begin{cases} \alpha e^{-\alpha t}, & t \geq 0 \\ 0, & t < 0 \end{cases}$                                                  & $\frac{1}{\alpha}$                                          & $\frac{1}{\alpha ^2}$                                                                                              \\ \midrule
+    $T\stackrel{d}{=} \gamma(r, \alpha)$            & $f_T(t)=\frac{\alpha^r t^{r-1} e^{-\alpha t}}{\Gamma(r)},\ t > 0$                                                                  & $\frac{r}{\alpha}$                                          & $\frac{r}{\alpha ^2}$                                                                                              \\ \midrule
+    $X\stackrel{d}{=}\mbox{Beta}(\alpha, \beta)$    & $f_X(x)=\begin{cases} \frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}, & 0 \leq x \leq 1 \\ 0, & \mbox{elsewhere} \end{cases}$ & $\frac{\alpha}{\alpha+\beta}$                               & $\frac{\alpha \beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$                                                            \\ \midrule
+    $X\stackrel{d}{=}\mbox{Pareto}(\alpha, \gamma)$ & $f_X(x)=\frac{\gamma \alpha^\gamma}{x^{\gamma+1}}, \mbox{ for } \alpha \leq x < \infty$                                            & $\frac{\gamma \alpha}{\gamma - 1}, \mbox{ for } \gamma > 1$ & $\frac{\gamma \alpha^2}{(\gamma-1)^2(\gamma - 2)}, \mbox{ for } \gamma > 2$                                        \\ \midrule
+    $X\stackrel{d}{=}\mbox{N}(\mu, \sigma^2)$       & $f_X(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}, \mbox{ for } x \in \mathbb{R}$                              & $\mu$                                                       & $\sigma^2$                                                                                                         \\ \midrule
+    $X\stackrel{d}{=}\mbox{Weibull}(\beta, \gamma)$ & $f_X(x)=\frac{\gamma x^{\gamma - 1}}{\beta^\gamma}e^{-(\frac{x}{\beta})^\gamma}, \mbox{ for } 0 \leq x < \infty$                   & $\beta \Gamma\left(\frac{\gamma + 1}{\gamma}\right)$        & $\beta^2 \left[\Gamma\left(\frac{\gamma + 2}{\gamma}\right)-\Gamma\left(\frac{\gamma + 1}{\gamma}\right)^2\right]$ \\ \midrule
+    $X\stackrel{d}{=}\mbox{C}(m, a)$                & $f_X(x)=\frac{1}{\pi} \frac{a}{a^2 + (x-m)^2}, \mbox{ for } -\infty < x < \infty$                                                  & Undefined                                                   & Undefined                                                                                                          \\ \midrule
+    $Y \stackrel{d}{=} \mbox{LN}(\mu, \sigma^2)$    & $f_Y(y)=\frac{1}{\sqrt{2\pi}\sigma y}e^{-\frac{(\ln y - \mu)^2}{2\sigma^2}}, \mbox{ for } y > 0$                                   & $e^{r\mu + \frac{1}{2}r^2 \sigma^2},\ r \geq 0$             & $e^{2\mu + \sigma^2}(e^{\sigma^2}-1)$                                                                              \\ \midrule
+    $Y \stackrel{d}{=} \mbox{LN}(\mu, \sigma^2)$    & $f_Y(y)=\frac{1}{\sqrt{2\pi}\sigma y}e^{-\frac{(\ln y - \mu)^2}{2\sigma^2}}, \mbox{ for } y > 0$                                   & $e^{r\mu + \frac{1}{2}r^2 \sigma^2},\ r \geq 0$             & $e^{2\mu + \sigma^2}(e^{\sigma^2}-1)$                                                                              \\ \bottomrule
+    \end{tabular}
+    \end{table}
+
+\begin{multicols*}{2}
 \subsection*{Other Formulae}
 \textbf{Sample Variance}\\
-$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_{i}-\bar{x})^2 = \frac{1}{n-1} (\sum_{i=1}^{n} x_{i}^2 -n \bar{x}^2)$
+$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_{i}-\bar{x})^2 = \frac{1}{n-1} \left( \left( \sum_{i=1}^{n} x_{i}^2 \right) -n \bar{x}^2 \right)$
+\end{multicols*}
 \end{document}
