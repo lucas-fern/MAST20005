@@ -1,17 +1,13 @@
 \documentclass{article}
 
-\usepackage[a4paper,top=2cm,bottom=2cm,left=1cm,right=1cm]{geometry}
+\usepackage[a4paper,top=2cm,bottom=1.5cm,left=0.8cm,right=0.8cm]{geometry}
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
 \usepackage{fancyhdr}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{algorithm2e}
-\usepackage{nopageno}
 \usepackage{mathtools}
 \usepackage{booktabs}
 \usepackage{multicol}
-\usepackage[table,xcdraw]{xcolor}
+\usepackage{xcolor}
 
 \title{MAST20005 Statistics - Summary Notes}
 \date{\today}
@@ -28,26 +24,58 @@
     \begin{tabular}{@{}llll@{}}
     \toprule
     \multicolumn{1}{c}{\textbf{Distribution}}       & \multicolumn{1}{c}{\textbf{Probability Density Function}}                                                                          & \multicolumn{1}{c}{\textbf{$\mathbb{E}(X)$}}                & \multicolumn{1}{c}{\textbf{$\mbox{Var}(X)$}}                                                                       \\ \midrule
-    $X\stackrel{d}{=}\mbox{Bi}(n,p)$                & $p_X(x)={\binom{n}{x}}p^x(1-p)^{n-x}$                                                                                              & $np$                                                        & $np(1-p)$                                                                                                          \\ \midrule
-    $N\stackrel{d}{=}\mbox{G}(p)$                   & $p_N(n)=(1-p)^{n}p$                                                                                                                & $\frac{1-p}{p}$                                             & $\frac{1-p}{p^2}$                                                                                                  \\ \midrule
-    $Z\stackrel{d}{=}\mbox{Nb}(r,p)$                & $p_Z(z)={\binom{-r}{z}}p^r(p-1)^z$                                                                                                 &                                                             &                                                                                                                    \\ \midrule
-    $X\stackrel{d}{=}\mbox{Hg}(n,D,N)$              & $p_X(x)=\frac{{\binom{D}{x}}{\binom{N-D}{n-x}}}{{\binom{N}{n}}}$                                                                   & $\frac{nD}{N}$                                              & $\frac{nD(N-D)}{N^2}\cdot(1-\frac{n-1}{N-1})$                                                                      \\ \midrule
-    $X\stackrel{d}{=}\mbox{Pn}(\alpha t)$           & $p_X(x)=\frac{e^{-\alpha}(\alpha)^x}{x!}$                                                                                          & $\alpha$                                                    & $\alpha$                                                                                                           \\ \midrule
-    $X\stackrel{d}{=}\mbox{U}(m,n)$                 & $p_X(x)=\frac{1}{n-m+1}$                                                                                                           & $\frac{m+n}{2}$                                             & $\frac{1}{12}((n-m+1)^2-1)$                                                                                        \\ \midrule
-    $X\stackrel{d}{=}\mbox{R}(a,b)$                 & $f_X(x)=\frac{1}{b-a}$                                                                                                             & $\frac{a+b}{2}$                                             & $\frac{1}{12}(b-a)^2$                                                                                              \\ \midrule
-    $T\stackrel{d}{=}\mbox{exp}(\alpha)$            & $f_T(t)=\begin{cases} \alpha e^{-\alpha t}, & t \geq 0 \\ 0, & t < 0 \end{cases}$                                                  & $\frac{1}{\alpha}$                                          & $\frac{1}{\alpha ^2}$                                                                                              \\ \midrule
-    $T\stackrel{d}{=} \gamma(r, \alpha)$            & $f_T(t)=\frac{\alpha^r t^{r-1} e^{-\alpha t}}{\Gamma(r)},\ t > 0$                                                                  & $\frac{r}{\alpha}$                                          & $\frac{r}{\alpha ^2}$                                                                                              \\ \midrule
-    $X\stackrel{d}{=}\mbox{Beta}(\alpha, \beta)$    & $f_X(x)=\begin{cases} \frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}, & 0 \leq x \leq 1 \\ 0, & \mbox{elsewhere} \end{cases}$ & $\frac{\alpha}{\alpha+\beta}$                               & $\frac{\alpha \beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$                                                            \\ \midrule
-    $X\stackrel{d}{=}\mbox{Pareto}(\alpha, \gamma)$ & $f_X(x)=\frac{\gamma \alpha^\gamma}{x^{\gamma+1}}, \mbox{ for } \alpha \leq x < \infty$                                            & $\frac{\gamma \alpha}{\gamma - 1}, \mbox{ for } \gamma > 1$ & $\frac{\gamma \alpha^2}{(\gamma-1)^2(\gamma - 2)}, \mbox{ for } \gamma > 2$                                        \\ \midrule
-    $X\stackrel{d}{=}\mbox{N}(\mu, \sigma^2)$       & $f_X(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}, \mbox{ for } x \in \mathbb{R}$                              & $\mu$                                                       & $\sigma^2$                                                                                                         \\ \midrule
-    $X\stackrel{d}{=}\mbox{Weibull}(\beta, \gamma)$ & $f_X(x)=\frac{\gamma x^{\gamma - 1}}{\beta^\gamma}e^{-(\frac{x}{\beta})^\gamma}, \mbox{ for } 0 \leq x < \infty$                   & $\beta \Gamma\left(\frac{\gamma + 1}{\gamma}\right)$        & $\beta^2 \left[\Gamma\left(\frac{\gamma + 2}{\gamma}\right)-\Gamma\left(\frac{\gamma + 1}{\gamma}\right)^2\right]$ \\ \midrule
-    $X\stackrel{d}{=}\mbox{C}(m, a)$                & $f_X(x)=\frac{1}{\pi} \frac{a}{a^2 + (x-m)^2}, \mbox{ for } -\infty < x < \infty$                                                  & Undefined                                                   & Undefined                                                                                                          \\ \midrule
-    $Y \stackrel{d}{=} \mbox{LN}(\mu, \sigma^2)$    & $f_Y(y)=\frac{1}{\sqrt{2\pi}\sigma y}e^{-\frac{(\ln y - \mu)^2}{2\sigma^2}}, \mbox{ for } y > 0$                                   & $e^{r\mu + \frac{1}{2}r^2 \sigma^2},\ r \geq 0$             & $e^{2\mu + \sigma^2}(e^{\sigma^2}-1)$                                                                              \\ \midrule
-    $Y \stackrel{d}{=} \mbox{LN}(\mu, \sigma^2)$    & $f_Y(y)=\frac{1}{\sqrt{2\pi}\sigma y}e^{-\frac{(\ln y - \mu)^2}{2\sigma^2}}, \mbox{ for } y > 0$                                   & $e^{r\mu + \frac{1}{2}r^2 \sigma^2},\ r \geq 0$             & $e^{2\mu + \sigma^2}(e^{\sigma^2}-1)$                                                                              \\ \bottomrule
+    $X \sim \mbox{Bi}(n,p)$                & $p_X(x)={\binom{n}{x}}p^x(1-p)^{n-x}$                                                                                              & $np$                                                        & $np(1-p)$                                                                                                          \\ \midrule
+    $N \sim \mbox{G}(p)$                   & $p_N(n)=(1-p)^{n}p$                                                                                                                & $\frac{1-p}{p}$                                             & $\frac{1-p}{p^2}$                                                                                                  \\ \midrule
+%    $Z \sim \mbox{Nb}(r,p)$                & $p_Z(z)={\binom{-r}{z}}p^r(p-1)^z$                                                                                                 &                                                             &                                                                                                                    \\ \midrule
+%    $X \sim \mbox{Hg}(n,D,N)$              & $p_X(x)=\frac{{\binom{D}{x}}{\binom{N-D}{n-x}}}{{\binom{N}{n}}}$                                                                   & $\frac{nD}{N}$                                              & $\frac{nD(N-D)}{N^2}\cdot(1-\frac{n-1}{N-1})$                                                                      \\ \midrule
+    $X \sim \mbox{Pn}(\alpha t)$           & $p_X(x)=\frac{e^{-\alpha}(\alpha)^x}{x!}$                                                                                          & $\alpha$                                                    & $\alpha$                                                                                                           \\ \midrule
+    $X \sim \mbox{U}(m,n)$                 & $p_X(x)=\frac{1}{n-m+1}$                                                                                                           & $\frac{m+n}{2}$                                             & $\frac{1}{12}((n-m+1)^2-1)$                                                                                        \\ \midrule
+    $X \sim \mbox{R}(a,b)$                 & $f_X(x)=\frac{1}{b-a}$                                                                                                             & $\frac{a+b}{2}$                                             & $\frac{1}{12}(b-a)^2$                                                                                              \\ \midrule
+    $T \sim \mbox{exp}(\alpha)$            & $f_T(t)=\alpha e^{-\alpha t}, \mbox{ for } t \geq 0$                                                                               & $\frac{1}{\alpha}$                                          & $\frac{1}{\alpha ^2}$                                                                                              \\ \midrule
+    $T \sim \gamma(r,\alpha)$              & $f_T(t)=\frac{\alpha^r t^{r-1} e^{-\alpha t}}{\Gamma(r)},\ t > 0$                                                                  & $\frac{r}{\alpha}$                                          & $\frac{r}{\alpha ^2}$                                                                                              \\ \midrule
+    $X \sim \mbox{Pareto}(\alpha, \gamma)$ & $f_X(x)=\frac{\gamma \alpha^\gamma}{x^{\gamma+1}}, \mbox{ for } \alpha \leq x < \infty$                                            & $\frac{\gamma \alpha}{\gamma - 1}, \mbox{ for } \gamma > 1$ & $\frac{\gamma \alpha^2}{(\gamma-1)^2(\gamma - 2)}, \mbox{ for } \gamma > 2$                                        \\ \midrule
+    $X \sim \mbox{N}(\mu, \sigma^2)$       & $f_X(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}, \mbox{ for } x \in \mathbb{R}$                              & $\mu$                                                       & $\sigma^2$                                                                                                         \\ \midrule
+%    $X \sim \mbox{Weibull}(\beta, \gamma)$ & $f_X(x)=\frac{\gamma x^{\gamma - 1}}{\beta^\gamma}e^{-(\frac{x}{\beta})^\gamma}, \mbox{ for } 0 \leq x < \infty$                   & $\beta \Gamma\left(\frac{\gamma + 1}{\gamma}\right)$        & $\beta^2 \left[\Gamma\left(\frac{\gamma + 2}{\gamma}\right)-\Gamma\left(\frac{\gamma + 1}{\gamma}\right)^2\right]$ \\ \midrule
+    $X \sim \mbox{C}(m, a)$                & $f_X(x)=\frac{1}{\pi} \frac{a}{a^2 + (x-m)^2}, \mbox{ for } -\infty < x < \infty$                                                  & Undefined                                                   & Undefined                                                                                                          \\ \midrule
+    $Y \sim \mbox{LN}(\mu, \sigma^2)$      & $f_Y(y)=\frac{1}{\sqrt{2\pi}\sigma y}e^{-\frac{(\ln y - \mu)^2}{2\sigma^2}}, \mbox{ for } y > 0$                                   & $e^{r\mu + \frac{1}{2}r^2 \sigma^2},\ r \geq 0$             & $e^{2\mu + \sigma^2}(e^{\sigma^2}-1)$                                                                              \\ \bottomrule
     \end{tabular}
     \end{table}
 
 \begin{multicols*}{2}
+\subsection*{Confidence Intervals}
+{\color{magenta}\subsubsection*{Estimating Means}}
+\textbf{Normal, Single Mean, Known $\sigma$}\\
+$ \left( \bar{x} \pm c \frac{\sigma}{\sqrt{n}} \right) ; \mbox{ with } c=\mbox{F}^{-1}(1-\frac{\alpha}{2}) \mbox{ from pivot } \mbox{N}(0, 1).$\\
+\textbf{Normal, Single Mean, Unknown $\sigma$}\\
+$ \left( \bar{x} \pm c \frac{s}{\sqrt{n}} \right); \mbox{ with } c=\mbox{F}^{-1}(1-\frac{\alpha}{2}) \mbox{ from pivot } t_{n-1}.$\\
+\textbf{Normal, Two Means, Two Known $\sigma$'s}\\
+$ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{\sigma_{X}^{2}}{n} + \frac{\sigma_{Y}^{2}}{m}} \right); \mbox{ with } c \mbox{ from pivot } \mbox{N}(0, 1).$\\
+\textbf{Normal, Two Means, Unknown $\sigma$'s, Many Samples}\\
+$ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m}} \right); \mbox{ with } c \mbox{ from pivot } \mbox{N}(0, 1).$\\
+\textbf{Normal, Two Means, Unknown $\sigma$'s, Common Variance}\\
+$ \left( (\bar{x} - \bar{y}) \pm c \cdot s_{P} \sqrt{\frac{1}{n} + \frac{1}{m}} \right); \mbox{ with } c \mbox{ from pivot } t_{n+m-2}.$\\
+\-\hspace{2cm} $ s_{P} = \sqrt{\frac{(n-1) s^{2}_{X} + (m-1) s^{2}_{Y}}{n+m-2}} $\\
+\textbf{Normal, Two Means, Unknown $\sigma$'s, $\neq$ Variances}\\  % Remove this if you want to make space!
+$ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m}} \right); \mbox{ with } c \mbox{ from pivot } t_{r}.$\\
+\-\hspace{1cm} $ r = \left( \frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m} \right)^2 / \left( \frac{s_{X}^{4}}{n^{2}(n-1)} + \frac{s_{Y}^{4}}{m^{2}(m-1)} \right) $\\
+\textbf{Normal, Paired Samples}\\
+For pairs $(X_{i}, Y_{i})$, let $D_{i} = X_{i} - Y_{i}$. $D_{i} \sim \mbox{N}(\mu_{D}, \sigma_{D}^{2}).$\\
+$ \left( \bar{d} \pm c \frac{s_{d}}{\sqrt{n}} \right); \mbox{ with } c \mbox{ from pivot } t_{n-1}.$ 
+
+{\color{magenta}\subsubsection*{Estimating Variance}}
+\textbf{Normal, Single Variance}\\
+$ \left( \frac{(n-1) s^{2}}{b}, \frac{(n-1) s^{2}}{a} \right); \mbox{ with } a, b \mbox{ from pivot } \chi^{2}_{n-1}.$\\
+\textbf{Normal, Two Variances}\\
+A confidence interval for the ratio of the variances $\sigma_{X}^{2} / \sigma_{Y}^{2}$ is
+$ \left( a \cdot \frac{s_{x}^{2}}{s_{y}^{2}}, b \cdot \frac{s_{x}^{2}}{s_{y}^{2}} \right); \mbox{ with } a, b \mbox{ from pivot } \mbox{F}_{m-1,n-1}.$\\
+\vfill
+
+{\color{magenta}\subsubsection*{Estimating Proportions}}
+\textbf{Single Proportion}\\
+$ \approx \left( \hat{p} \pm c \sqrt{\frac{\hat{p} (1-\hat{p})}{n}} \right); \mbox{ with } c \mbox{ from pivot } \mbox{N}(0, 1).$\\
+\textbf{Two Proportions}\\
+$ \approx \left( \hat{p_{1}} - \hat{p_{2}} \pm c \sqrt{\frac{\hat{p_{1}} (1-\hat{p_{1}})}{n} + \frac{\hat{p_{2}} (1-\hat{p_{2}})}{n}} \right); c \mbox{ from pivot } \mbox{N}(0, 1).$\\
+
 \subsection*{Other Formulae}
 \textbf{Sample Variance}\\
 $s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_{i}-\bar{x})^2 = \frac{1}{n-1} \left( \left( \sum_{i=1}^{n} x_{i}^2 \right) -n \bar{x}^2 \right)$
