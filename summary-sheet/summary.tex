@@ -44,6 +44,7 @@
 \begin{multicols*}{2}
 \subsection*{Confidence Intervals}
 {\color{magenta}\subsubsection*{Estimating Means}}
+{\color{blue}For large $r$, $t_{r} \longrightarrow \mbox{N}(0, 1)$ is a good approximation.}\\
 \textbf{Normal, Single Mean, Known $\sigma$}\\
 $ \left( \bar{x} \pm c \frac{\sigma}{\sqrt{n}} \right) ; \mbox{ with } c=\mbox{F}^{-1}(1-\frac{\alpha}{2}) \mbox{ from pivot } \mbox{N}(0, 1).$\\
 \textbf{Normal, Single Mean, Unknown $\sigma$}\\
@@ -56,25 +57,31 @@ $ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{
 $ \left( (\bar{x} - \bar{y}) \pm c \cdot s_{P} \sqrt{\frac{1}{n} + \frac{1}{m}} \right); \mbox{ with } c \mbox{ from pivot } t_{n+m-2}.$\\
 \-\hspace{2cm} $ s_{P} = \sqrt{\frac{(n-1) s^{2}_{X} + (m-1) s^{2}_{Y}}{n+m-2}} $\\
 \textbf{Normal, Two Means, Unknown $\sigma$'s, $\neq$ Variances}\\  % Remove this if you want to make space!
-$ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m}} \right); \mbox{ with } c \mbox{ from pivot } t_{r}.$\\
+$ \left( (\bar{x} - \bar{y}) \pm c \sqrt{\frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m}} \right);$ {\color{blue}$\mbox{ with } c \mbox{ from pivot } t_{r}.$}\\
 \-\hspace{1cm} $ r = \left( \frac{s_{X}^{2}}{n} + \frac{s_{Y}^{2}}{m} \right)^2 / \left( \frac{s_{X}^{4}}{n^{2}(n-1)} + \frac{s_{Y}^{4}}{m^{2}(m-1)} \right) $\\
 \textbf{Normal, Paired Samples}\\
 For pairs $(X_{i}, Y_{i})$, let $D_{i} = X_{i} - Y_{i}$. $D_{i} \sim \mbox{N}(\mu_{D}, \sigma_{D}^{2}).$\\
-$ \left( \bar{d} \pm c \frac{s_{d}}{\sqrt{n}} \right); \mbox{ with } c \mbox{ from pivot } t_{n-1}.$ 
+$ \left( \bar{d} \pm c \frac{s_{d}}{\sqrt{n}} \right);$ {\color{blue}$\mbox{ with } c \mbox{ from pivot } t_{n-1}.$}
 
 {\color{magenta}\subsubsection*{Estimating Variance}}
-\textbf{Normal, Single Variance}\\
+\textbf{Normal, Single Variance} - {\color{red} estimate of $\sigma^{2}$ not $\sigma$!}\\
 $ \left( \frac{(n-1) s^{2}}{b}, \frac{(n-1) s^{2}}{a} \right); \mbox{ with } a, b \mbox{ from pivot } \chi^{2}_{n-1}.$\\
 \textbf{Normal, Two Variances}\\
 A confidence interval for the ratio of the variances $\sigma_{X}^{2} / \sigma_{Y}^{2}$ is
-$ \left( a \cdot \frac{s_{x}^{2}}{s_{y}^{2}}, b \cdot \frac{s_{x}^{2}}{s_{y}^{2}} \right); \mbox{ with } a, b \mbox{ from pivot } \mbox{F}_{m-1,n-1}.$\\
+$ \left( a \cdot \frac{s_{x}^{2}}{s_{y}^{2}}, b \cdot \frac{s_{x}^{2}}{s_{y}^{2}} \right); \mbox{ with } a, b \mbox{ from pivot } \mbox{F}_{m-1,n-1}.$
 \vfill
 
 {\color{magenta}\subsubsection*{Estimating Proportions}}
 \textbf{Single Proportion}\\
 $ \approx \left( \hat{p} \pm c \sqrt{\frac{\hat{p} (1-\hat{p})}{n}} \right); \mbox{ with } c \mbox{ from pivot } \mbox{N}(0, 1).$\\
 \textbf{Two Proportions}\\
-$ \approx \left( \hat{p_{1}} - \hat{p_{2}} \pm c \sqrt{\frac{\hat{p_{1}} (1-\hat{p_{1}})}{n} + \frac{\hat{p_{2}} (1-\hat{p_{2}})}{n}} \right); c \mbox{ from pivot } \mbox{N}(0, 1).$\\
+$ \approx \left( \hat{p_{1}} - \hat{p_{2}} \pm c \sqrt{\frac{\hat{p_{1}} (1-\hat{p_{1}})}{n} + \frac{\hat{p_{2}} (1-\hat{p_{2}})}{n}} \right); c \mbox{ from pivot } \mbox{N}(0, 1).$
+
+{\color{magenta}\subsubsection*{Prediction Intervals}}
+Let $X^{*}$ be a future realisation of $X$.\\
+If $X \sim \mbox{N}(\mu, \sigma^{2}), \bar{X} \sim \mbox{N}(\mu, \frac{\sigma^{2}}{n}), \mbox{ and } (\bar{X}-X^{*}) \sim \mbox{N}(\mu, \sigma^{2} + \frac{\sigma^{2}}{n})$.\\
+$\left( \bar{x} \pm c \sqrt{s^{2} + \frac{s^{2}}{n}} \right)$ is a prediction interval with $c$ from $t_{n-1}$.\\
+If $\sigma$ is known, use pivot $\mbox{N}(0, 1)$. If $\mu$ is known use $\chi^{2}_{n-1}$.
 
 \subsection*{Other Formulae}
 \textbf{Sample Variance}\\
