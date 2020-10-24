@@ -1,0 +1,97 @@
+---
+title: "MAST20005 - Assignment 3"
+author: "Lucas Fern"
+date: "18/10/2020"
+header-includes:
+   - \usepackage{bbm}
+   - \usepackage{xcolor}
+   - \usepackage{sectsty}
+   - \sectionfont{\color{red}}
+   - \subsectionfont{\color{red}}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1
+## 1a)
+\begin{align*}
+H_{0}&: m = 15\\
+H_{1}&: m < 15
+\end{align*}
+We will reject $H_{0}$ if the proportion of days with a count below 15 is large enough.
+```{r}
+cases <- c(48, 70, 47, 40, 35, 41, 30,
+           39, 41, 25, 44, 20, 13, 11,
+           28, 14, 11, 13, 12, 16, 5)
+n.under.15 <- sum(cases < 15)
+binom.test(n.under.15, length(cases),
+           alternative = "greater", conf.level = 0.95)
+```
+Since the p-value of the test is 0.9608 there is a low chance that this data came from a distribution with a median below 15, so we have insufficient evidence to reject the null.
+
+## 1b)
+Let $m_{2}$ be the median of the 2nd week and $m_{3}$ be the median of the third week.
+\begin{align*}
+H_{0}&: m_{2} - m_{3} = 0\\
+H_{1}&: m_{2} - m_{3} > 0
+\end{align*}
+We will reject the null hypothesis if scores in the 2nd week are significantly higher than in the third week.
+```{r}
+week.2 <- cases[8:14]
+week.3 <- cases[15:21]
+
+wilcox.test(week.2, week.3, 
+            alternative = "greater", conf.level = 0.95,
+            exact = FALSE)
+```
+Since the p-value of the test is 0.04798 there is just sufficient evidence to reject the null hypothesis at a 0.05 level of significance.
+
+# Question 2
+## 2a)
+![](ass3-written/2a.png)
+
+## 2b)
+![](ass3-written/2b.png)
+
+## 2c)
+![](ass3-written/2c.png)
+
+## 2d)
+![](ass3-written/2d.png)
+
+\newpage
+
+# Question 3
+## 3a)
+![](ass3-written/3a.png)
+
+## 3b)
+![](ass3-written/3b.png)
+
+\newpage 
+
+# Question 4
+## 4a)
+![](ass3-written/4a.png)
+
+## 4b)
+![](ass3-written/4b.png)
+
+## 4c)
+![](ass3-written/4c.png)
+
+\newpage
+
+# Question 5
+## 5a)
+![](ass3-written/5a.png)
+
+## 5b)
+![](ass3-written/5b.png)
+
+## 5c)
+![](ass3-written/5c.png)
+
