@@ -92,7 +92,7 @@ Can also derive a confidence interval from the exact distribution of the binomia
 
 \subsubsection*{\underline{Prediction Intervals}}
 Let $X^{*}$ be a future realisation of $X$.\\
-If $X \sim \mbox{N}(\mu, \sigma^{2}), \bar{X} \sim \mbox{N}(\mu, \frac{\sigma^{2}}{n}), \mbox{ and } (\bar{X}-X^{*}) \sim \mbox{N}(\mu, \sigma^{2} + \frac{\sigma^{2}}{n})$.\\
+If $X \sim \mbox{N}(\mu, \sigma^{2}), \bar{X} \sim \mbox{N}(\mu, \frac{\sigma^{2}}{n}), \mbox{ and } (\bar{X}-X^{*}) \sim \mbox{N}(0, \sigma^{2} + \frac{\sigma^{2}}{n})$.\\
 $\left( \bar{x} \pm c \sqrt{s^{2} + \frac{s^{2}}{n}} \right)$ is a prediction interval with $c$ from $t_{n-1}$.\\
 If $\sigma$ is known, use pivot $\mbox{N}(0, 1)$. If $\mu$ is known use $\chi^{2}_{n-1}$.
 
@@ -151,12 +151,15 @@ $$\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim \mbox{N}(0, 1); \quad \frac{\bar{
 
 \newpage
 \subsection*{ANOVA}
-All populations assumed to have equal variance.\\
-Total Sample Size: $n = n_{1} + \dots + n_{k}$\\
-Group Means: $\bar{X}_{i\cdot} = \frac{1}{n_{i}}\sum_{j=1}^{n_{i}} X_{ij}$\\
-Grand Mean: $\bar{X}_{\cdot \cdot} = \frac{1}{n}\sum_{i=1}^{k} \sum_{j=1}^{n_{i}} X_{ij} = \frac{1}{n}\sum_{i=1}^{k} n_{i}\bar{X}_{i\cdot}$
+All populations assumed to have equal variance.
+\subsubsection*{\underline{F-Statistics / F-test}}
+To test any $H_{0}$ in ANOVA, use the F statistic. Since the $MS$ terms are $\chi^{2}$ distributed, $F = MS(X) \div MS(E)$ is distributed as $\mbox{F}_{df_{X}, df_{E}}$ and the rejection region is $F > c$.\\
+\textit{eg.} To test $H_{0AB}: \gamma_{ij} = 0\ \forall\ i, j$ 
 
 \subsubsection*{\underline{Single Factor (One Way) ANOVA}}
+Total Sample Size: $n = n_{1} + \dots + n_{k}$\\
+\textbf{Means}: $$\bar{X}_{i\cdot} = \frac{1}{n_{i}}\sum_{j=1}^{n_{i}} X_{ij}$$
+$$\bar{X}_{\cdot \cdot} = \frac{1}{n}\sum_{i=1}^{k} \sum_{j=1}^{n_{i}} X_{ij} = \frac{1}{n}\sum_{i=1}^{k} n_{i}\bar{X}_{i\cdot}$$
 \textbf{Hypotheses}: $H_{0}: \mu_{1} = \mu_{2} = \dots = \mu_{k}$ vs. $H_{1}: \bar{H}_{0}$\\
 \textbf{Sum of Squares}:\\
 Treatment SS:\\
@@ -165,11 +168,10 @@ Error SS:\\
 $SS(E) = \sum_{i=1}^{k} \sum_{j=1}^{n_{i}} (X_{ij} - \bar{X}_{i\cdot})^{2} = \sum_{i=1}^{k} (n_{i} - 1) S_{i}^{2}$\\
 Total SS:\\
 $SS(TO) = \sum_{i=1}^{k} \sum_{j=1}^{n_{i}} (X_{ij} - \bar{X}_{\cdot \cdot})^{2} = SS(T) + SS(E)$\\
+\textbf{Degrees of Freedom}:\\
+\centerline{$\mbox{Treatment}: k-1; \qquad \mbox{Error}: n-k$}
 \textbf{Null Distributions of Sum of Squares Terms}:
 $$\frac{SS(T)}{\sigma^{2}} \sim \chi^{2}_{k-1}; \quad \frac{SS(E)}{\sigma^{2}} \sim \chi^{2}_{n-k}; \quad \frac{SS(TO)}{\sigma^{2}} \sim \chi^{2}_{n-1}$$
-\textbf{Test Statistic (F-test)}:
-$$F = \frac{SS(T) / (k-1)}{SS(E) / (n-k)}$$
-Under $H_{0}$, $F \sim \mbox{F}_{k-1, n-1}$, so since the numerator will be larger when $H_{0}$ is false reject $H_{0}$ for $F > c$.
 
 \subsubsection*{\underline{Two Factor (Two Way) ANOVA}}
 Assume $X_{ij} \sim N(\mu_{ij}, \sigma^{2})$. $\mu_{ij} = \mu + \alpha_{i} + \beta_{j}$. $\sum_{i=1}^{a} \alpha_{i} = 0$ and $\sum_{j=1}^{b} \beta_{j} = 0$. Take one observation from each combination of $a$ and $b$ ($n = ab$).\\
@@ -184,10 +186,8 @@ Error SS:\\
 $SS(E) = \sum_{i=1}^{a} \sum_{j=1}^{b} (X_{ij} - \bar{X}_{i\cdot} - \bar{X}_{\cdot j} + \bar{X}_{\cdot \cdot})^{2}$\\
 Total SS:\\
 $SS(TO) = SS(A) + SS(B) + SS(E)$\\
-\textbf{Test Statistics (F-test)}:\\
-The test statistics for $H_{0A}$ and $H_{0B}$ are:
-$$F = \frac{SS(A) / (a-1)}{SS(E) / (a-1)(b-1)} \quad \mbox{ or } \quad \frac{SS(B) / (b-1)}{SS(E) / (a-1)(b-1)} > c$$
-With $c$ from $\mbox{F}_{a-1, (a-1)(b-1)}$ or $\mbox{F}_{b-1, (a-1)(b-1)}$ respectively.
+\textbf{Degrees of Freedom}:\\
+\centerline{$A: a-1; \qquad B: b-1; \qquad \mbox{Error}: (a-1)(b-1)$}
 
 \subsubsection*{\underline{Two Factor ANOVA with Interaction Terms}}
 Take samples over two factors, but $c$ samples for each factor pair. $\mu_{ij} = \mu + \alpha_{i} + \beta_{j} + \gamma_{ij}$.\\
@@ -205,12 +205,8 @@ Error SS:\\
 $SS(E) = \sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{c} (X_{ijk} - \bar{X}_{i j \cdot})^{2}$\\
 Total SS:\\
 $SS(TO) = SS(A) + SS(B) + SS(AB) + SS(E)$\\
-\textbf{Test Statistics (F-test)}:\\
-The test statistics for $H_{0A}$ and $H_{0B}$ are:
-$$F = \frac{SS(A) / (a-1)}{SS(E) / ab(c-1)} \quad \mbox{ or } \quad \frac{SS(B) / (b-1)}{SS(E) / ab(c-1)} > c$$
-With $c$ from $\mbox{F}_{a-1, ab(c-1)}$ or $\mbox{F}_{b-1, ab(c-1)}$ respectively.\\
-And for $H_{0AB}$ with $c$ from $\mbox{F}_{(a-1)(b-1), ab(c-1)}$:
-$$F = \frac{SS(AB) / (a-1)(b-1)}{SS(E) / ab(c-1)} > c$$
+\textbf{Degrees of Freedom}:\\
+\centerline{$A: a-1; \quad B: b-1; \quad AB: (a-1)(b-1); \quad \mbox{Error}: ab(c-1)$}
 
 \subsubsection*{Mean Squares / Mean Square Error}
 MSE is found by dividing the $SS(E)$ by its degrees of freedom.\\
@@ -233,6 +229,15 @@ Since the numerator $(O_{i} - E_{i})^{2}$ will be larger when $H_{0}$ is false, 
 Testing $H_{0}: p = p_{1}$ vs. $H_{1}: p \neq p_{1}$
 \subsubsection*{More than Two Classes $(k > 2)$}
 Let $p_{1}, \dots, p_{k}$ define the proportions of a categorical distribution. $H_{0}: ``p_{1}, \dots, p_{k} \mbox{ do define the distribution}"$ vs. $H_{1}: \bar{H}_{0}$
+
+\noindent\rule{\linewidth}{0.25pt}
+\subsection*{Sufficient Statistics}
+\subsubsection*{Exponential Family}
+\centerline{$f(x \mid \theta) = \mbox{exp}\{K(x)p(\theta) + S(x) + q(\theta)\}$}
+Has $\sum_{i=1}^{n} K(X_{i})$ as a sufficient statistic for $\theta$.
+\subsubsection*{Factorisation Theorem}
+$Y = g(x_{1}, \dots, x_{n})$ is sufficient for $\theta$ iff:\\
+\centerline{$f(x_{1}, \dots, x_{n} \mid \theta) = \phi\{g(x_{1}, \dots, x_{n}) \mid \theta\} h(x_{1}, \dots, x_{n})$}
 
 \noindent\rule{\linewidth}{0.25pt}
 \subsection*{Other Formulae}
