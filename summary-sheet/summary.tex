@@ -158,8 +158,7 @@ To test any $H_{0}$ in ANOVA, use the F statistic. Since the $MS$ terms are $\ch
 
 \subsubsection*{\underline{Single Factor (One Way) ANOVA}}
 Total Sample Size: $n = n_{1} + \dots + n_{k}$\\
-\textbf{Means}: $$\bar{X}_{i\cdot} = \frac{1}{n_{i}}\sum_{j=1}^{n_{i}} X_{ij}$$
-$$\bar{X}_{\cdot \cdot} = \frac{1}{n}\sum_{i=1}^{k} \sum_{j=1}^{n_{i}} X_{ij} = \frac{1}{n}\sum_{i=1}^{k} n_{i}\bar{X}_{i\cdot}$$
+\textbf{Means}: $$\bar{X}_{i\cdot} = \frac{1}{n_{i}}\sum_{j=1}^{n_{i}} X_{ij}; \qquad \bar{X}_{\cdot \cdot} = \frac{1}{n}\sum_{i=1}^{k} \sum_{j=1}^{n_{i}} X_{ij} = \frac{1}{n}\sum_{i=1}^{k} n_{i}\bar{X}_{i\cdot}$$
 \textbf{Hypotheses}: $H_{0}: \mu_{1} = \mu_{2} = \dots = \mu_{k}$ vs. $H_{1}: \bar{H}_{0}$\\
 \textbf{Sum of Squares}:\\
 Treatment SS:\\
@@ -213,12 +212,13 @@ MSE is found by dividing the $SS(E)$ by its degrees of freedom.\\
 \underline{$\hat{\sigma}^{2} = MS(E)$ is an unbiased estimator for the variance.} 
 
 \noindent\rule{\linewidth}{0.25pt}
-\subsection*{Distribution of Order Statistics}
+\subsection*{Distribution of Quantiles and Order Statistics}
 \subsubsection*{CDF of $X_{(k)}$}
 $$G_{k}(x) = \mbox{Pr}(X_{k} \leq x) = \sum_{i=k}^{n} \binom{n}{i} F(x)^{i} (1 - F(x))^{n-i}$$
 \subsubsection*{PDF of $X_{(k)}$}
 $$g_{k}(x) = k \binom{n}{k} F(x)^{k-1} (1 - F(x))^{n-k} f(x)$$
-
+\subsubsection*{Asymptotic Distribution of $\hat{\pi}_{p}$}
+$$\hat{\pi}_{p} \approx \mbox{N}\left(\pi_{p}, \frac{p(1-p)}{n \cdot f(\pi_{p})^{2}}\right); \qquad \hat{M} \approx \mbox{N}\left(m, \frac{1}{4n \cdot f(m)^{2}}\right)$$
 
 \noindent\rule{\linewidth}{0.25pt}
 \subsection*{Goodness-of-fit Test ($\chi^{2}$)}
