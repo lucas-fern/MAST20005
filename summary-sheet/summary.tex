@@ -114,7 +114,7 @@ $$\frac{\hat{\alpha} - \alpha}{\hat{\sigma} \sqrt{\frac{1}{n} + \frac{\bar{x}^{2
 \subsubsection*{Sign Test}
 \textbf{Hypotheses:} $H_{0}: m = m_{0}; \quad H_{1}: m \neq m_{0}$ or 1 sided $H_{1}$.\\
 Let $Y = \sum_{i=1}^{n} I(X_{i} - m_{0} > 0)$. Under $H_{0}$, $Y \sim \mbox{Bi}(n, 0.5)$. Can calculate $p$ values or a critical region from $Y \sim \mbox{Bi}(n, 0.5)$.\\
-\textbf{Paired Samples:} Replace $(x_{i}, y{i})$ with $\mbox{sgn}(x_{i} - y_{i})$ and use the same distribution to check for equal medians. 
+\textbf{Paired Samples:} Replace $(x_{i}, y_{i})$ with $\mbox{sgn}(x_{i} - y_{i})$ and use the same distribution to check for equal medians. 
 \subsubsection*{Wilcoxon Signed Rank / One Sample Test}
 \textbf{Hypotheses:} $H_{0}: m = m_{0}; \quad H_{1}: m \neq m_{0}$ or 1 sided $H_{1}$.\\
 Rank the $|X_{i} - m_{0}|$ from $1 \to n$ starting at 1 and replace $X_{i}$ with $\mbox{sgn}(X_{i} - m_{0}) \cdot \mbox{rank}(|X_{i} - m_{0}|)$. Let $W$ be the sum of the signed ranks. Under $H_{0}$:
@@ -154,7 +154,7 @@ $$\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim \mbox{N}(0, 1); \quad \frac{\bar{
 All populations assumed to have equal variance.
 \subsubsection*{\underline{F-Statistics / F-test}}
 To test any $H_{0}$ in ANOVA, use the F statistic. Since the $MS$ terms are $\chi^{2}$ distributed, $F = MS(X) \div MS(E)$ is distributed as $\mbox{F}_{df_{X}, df_{E}}$ and the rejection region is $F > c$.\\
-\textit{eg.} To test $H_{0AB}: \gamma_{ij} = 0\ \forall\ i, j$ 
+\textit{eg.} To test $H_{0AB}: \gamma_{ij} = 0\ \forall\ i, j$ use $\mbox{F}_{(a-1)(b-1), ab(c-1)}$.
 
 \subsubsection*{\underline{Single Factor (One Way) ANOVA}}
 Total Sample Size: $n = n_{1} + \dots + n_{k}$\\
@@ -210,7 +210,7 @@ $SS(TO) = SS(A) + SS(B) + SS(AB) + SS(E)$\\
 
 \subsubsection*{Mean Squares / Mean Square Error}
 MSE is found by dividing the $SS(E)$ by its degrees of freedom.\\
-\underline{$\hat{\sigma}^{2} = MS(E)$ is an unbiased estimator for the variance.}
+\underline{$\hat{\sigma}^{2} = MS(E)$ is an unbiased estimator for the variance.} 
 
 \noindent\rule{\linewidth}{0.25pt}
 \subsection*{Distribution of Order Statistics}
@@ -223,8 +223,8 @@ $$g_{k}(x) = k \binom{n}{k} F(x)^{k-1} (1 - F(x))^{n-k} f(x)$$
 \noindent\rule{\linewidth}{0.25pt}
 \subsection*{Goodness-of-fit Test ($\chi^{2}$)}
 $O_{i}$ is the Observed count of data in class $i$, $E_{i}$ {\color{red} ($> 5$)} is the Expected count under $H_{0}$. Be careful to use the count and not the proportion. For $k$ classes and $e$ estimated parameters:
-$$Q_{k-1} = \sum_{i=1}^{k} \frac{(O_{i} - E_{i})^{2}}{E_{i}} \approx \chi^{2}_{k-1}$$
-Since the numerator $(O_{i} - E_{i})^{2}$ will be larger when $H_{0}$ is false, we reject $H_{0}$ for $Q_{k-1} > c$, with $c$ from $\chi^{2}_{k-1-e}$.
+$$Q_{k-1-e} = \sum_{i=1}^{k} \frac{(O_{i} - E_{i})^{2}}{E_{i}} \approx \chi^{2}_{k-1-e}$$
+Since the numerator $(O_{i} - E_{i})^{2}$ will be larger when $H_{0}$ is false, we reject $H_{0}$ for $Q_{k-1-e} > c$, with $c$ from $\chi^{2}_{k-1-e}$.
 \subsubsection*{Two Classes $(k = 2)$}
 Testing $H_{0}: p = p_{1}$ vs. $H_{1}: p \neq p_{1}$
 \subsubsection*{More than Two Classes $(k > 2)$}
